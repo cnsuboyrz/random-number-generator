@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rastgele Sayı Üret</title>
+    </head>
+    <body>
+        <form id="randomNumberForm">
+            <label for="minValue">Minimum Değer:</label>
+            <input type="range" id="minValue" min="0" max="100" step="1"
+                value="0">
+            <div class="form-group">
+                <button id="minButton" type="button">Seç</button>
+                <input type="text" id="minGoster" readonly disabled>
+            </div>
+            <br>
+            <label for="maxValue">Maksimum Değer:</label>
+            <input type="range" id="maxValue" min="0" max="100" step="1"
+                value="100">
+            <div class="form-group">
+                <button id="maxButton" type="button">Seç</button>
+                <input type="text" id="maxGoster" readonly disabled>
+            </div>
+            <br>
+            <button type="submit" id="uretButton">Üret</button>
+            <hr>
+            <label id="resultLabel"></label>
+        </form>
+
+        <script>
+            var form = document.getElementById("randomNumberForm");
+            var minValueInput = document.getElementById("minValue");
+            var maxValueInput = document.getElementById("maxValue");
+            var minGosterInput = document.getElementById("minGoster");
+            var maxGosterInput = document.getElementById("maxGoster");
+            var resultLabel = document.getElementById("resultLabel");
+            var minButton = document.getElementById("minButton");
+            var maxButton = document.getElementById("maxButton");
+            var uretButton = document.getElementById("uretButton");
+    
+            minButton.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent form submission
+                var minValue = parseInt(minValueInput.value);
+                minGosterInput.value = minValue;
+            });
+    
+            maxButton.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent form submission
+                var maxValue = parseInt(maxValueInput.value);
+                maxGosterInput.value = maxValue;
+            });
+    
+            uretButton.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent form submission
+                var minValue = parseInt(minValueInput.value);
+                var maxValue = parseInt(maxValueInput.value);
+    
+                var randomNum = getRandomNumber(minValue, maxValue);
+    
+                resultLabel.innerText = "Rastgele Sayı: " + randomNum;
+            });
+    
+            function getRandomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        </script>
+    </body>
+
+</html>
